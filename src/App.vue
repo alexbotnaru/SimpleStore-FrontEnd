@@ -1,17 +1,8 @@
 <template>
   <v-app id="inspire">
-<!--    <v-system-bar app>-->
-<!--      <v-spacer></v-spacer>-->
-
-<!--      <v-icon>mdi-square</v-icon>-->
-
-<!--      <v-icon>mdi-circle</v-icon>-->
-
-<!--      <v-icon>mdi-triangle</v-icon>-->
-<!--    </v-system-bar>-->
 
     <SideBar/>
-    <ProductsLayout/>
+    <Content/>
     <Pagination/>
   </v-app>
 </template>
@@ -20,10 +11,10 @@
 
 import SideBar from "./components/SideBar";
 import Pagination from "./components/Pagination";
-import ProductsLayout from "./components/ProductsLayout";
+import Content from "./components/Content";
 
 export default {
-  components: {ProductsLayout, Pagination, SideBar},
+  components: {Content, Pagination, SideBar},
 
 }
 </script>
