@@ -30,7 +30,7 @@
 <script>
 import Content from "./Content";
 export default {
-  name: "Products",
+  name: "ProductsLayout",
   components: {Content},
 }
 </script>

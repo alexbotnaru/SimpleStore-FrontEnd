@@ -11,7 +11,7 @@
 <!--    </v-system-bar>-->
 
     <SideBar/>
-    <Products/>
+    <ProductsLayout/>
     <Pagination/>
   </v-app>
 </template>
@@ -19,11 +19,11 @@
 <script>
 
 import SideBar from "./components/SideBar";
-import Products from "./components/Products";
 import Pagination from "./components/Pagination";
+import ProductsLayout from "./components/ProductsLayout";
 
 export default {
-  components: {Pagination, Products, SideBar},
+  components: {ProductsLayout, Pagination, SideBar},
 
 }
 </script>

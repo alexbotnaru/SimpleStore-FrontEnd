@@ -41,6 +41,7 @@
         <v-list-item
             v-for="item in items"
             :key="item.title"
+            :to="item.route"
             link
         >
           <v-list-item-icon>
@@ -65,10 +66,11 @@ export default {
     return {
       drawer: null,
       items: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-        { title: 'My Account', icon: 'mdi-account-edit' },
-        { title: 'Log Out', icon: 'mdi-logout' },
+        { title: 'Home', route:'/products', icon: 'mdi-view-dashboard' },
+        { title: 'My Account', route:'/account', icon: 'mdi-account-edit' },
+        { title: 'About', route:'/info', icon: 'mdi-forum' },
+        { title: 'Contacts', route:'/contacts', icon: 'mdi-contacts' },
+        { title: 'Log Out', route:'/', icon: 'mdi-logout' },
       ],
     }
   },
