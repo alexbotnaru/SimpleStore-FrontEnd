@@ -1,7 +1,7 @@
 <template>
-  <v-main class="grey lighten-2">
+  <v-main>
     <v-container>
-      <RouterView/>
+      <RouterView />
     </v-container>
   </v-main>
 </template>

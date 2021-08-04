@@ -1,11 +1,11 @@
 <template>
   <div class="text-center">
     <v-pagination
-        v-model="page"
-        :length="3"
-        circle
-        disabled
-    ></v-pagination>
+      v-model="page"
+      :length="3"
+      circle
+      disabled
+    />
   </div>
 </template>
 

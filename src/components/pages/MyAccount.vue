@@ -3,30 +3,29 @@
     <v-col>
       <v-sheet height="600">
         <v-calendar
-            ref="calendar"
-            v-model="value"
-            color="primary"
-            type="4day"
-            :events="events"
-            :event-color="getEventColor"
-            :event-ripple="false"
-            @change="getEvents"
-            @mousedown:event="startDrag"
-            @mousedown:time="startTime"
-            @mousemove:time="mouseMove"
-            @mouseup:time="endDrag"
-            @mouseleave.native="cancelDrag"
+          ref="calendar"
+          v-model="value"
+          color="primary"
+          type="4day"
+          :events="events"
+          :event-color="getEventColor"
+          :event-ripple="false"
+          @change="getEvents"
+          @mousedown:event="startDrag"
+          @mousedown:time="startTime"
+          @mousemove:time="mouseMove"
+          @mouseup:time="endDrag"
+          @mouseleave.native="cancelDrag"
         >
-          <template v-slot:event="{ event, timed, eventSummary }">
+          <template v-slot:event="{ event, timed }">
             <div
-                class="v-event-draggable"
-                v-html="eventSummary()"
-            ></div>
+              class="v-event-draggable"
+            />
             <div
-                v-if="timed"
-                class="v-event-drag-bottom"
-                @mousedown.stop="extendBottom(event)"
-            ></div>
+              v-if="timed"
+              class="v-event-drag-bottom"
+              @mousedown.stop="extendBottom(event)"
+            />
           </template>
         </v-calendar>
       </v-sheet>
