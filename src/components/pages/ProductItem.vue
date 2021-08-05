@@ -1,17 +1,12 @@
 <template>
   <v-card
+    :key="link.title"
     :loading="loading"
     class="mx-auto my-5"
     max-width="374"
+    link
+    :to="link.route"
   >
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      />
-    </template>
-
     <v-img
       height="250"
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
@@ -36,10 +31,16 @@
 
     <v-card-actions>
       <v-btn
+
         color="deep-purple lighten-2"
         text
       >
         Add to cart
+        <v-icon
+          color="orange darken-2"
+        >
+          mdi-cart-check
+        </v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -51,11 +52,13 @@ export default {
   data: () => ({
     loading: false,
     selection: 1,
+    link: {
+      title: 'ProductDetails', route: '/details'
+    }
+
   }),
 
-  methods: {
-
-  },
+  methods: {},
 }
 </script>
 

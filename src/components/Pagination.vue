@@ -4,7 +4,6 @@
       v-model="page"
       :length="3"
       circle
-      disabled
     />
   </div>
 </template>

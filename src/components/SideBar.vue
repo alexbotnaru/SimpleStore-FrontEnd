@@ -3,11 +3,19 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer" />
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>
+        Simple Store <v-icon
+          large
+          color="orange darken-2"
+        >
+          mdi-store-outline
+        </v-icon>
+      </v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
       fixed
+      temporary
     >
       <v-list-item>
         <v-list-item-avatar
