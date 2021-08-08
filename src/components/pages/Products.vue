@@ -1,29 +1,69 @@
 <template>
-  <div>
-    <v-row>
+  <v-container
+    fluid
+  >
+    <h1 style="text-align: center">
+      Our products
+    </h1>
+    <v-row
+      v-if="$store.getters['products/getIsLoading']"
+    >
       <CategoriesList />
-      <template v-for="n in 6">
-        <!--        <v-col-->
-        <!--          :key="n"-->
-        <!--          class="mt-2"-->
-        <!--          cols="12"-->
-        <!--        >-->
-        <!--          <strong>Category {{ n }}</strong>-->
-        <!--        </v-col>-->
+      <v-col
+        class="mb-6"
+        :boilerplate="true"
+        :elevation="2"
+        cols="12"
+        md="3"
+      >
+        <v-skeleton-loader
 
+          type="card-avatar, article, actions"
+        />
+      </v-col>
+      <v-col
+        class="mb-6"
+        :boilerplate="true"
+        :elevation="2"
+        cols="12"
+        md="3"
+      >
+        <v-skeleton-loader
 
-        <v-col
-          v-for="j in 3"
-          :key="`${n}${j}`"
-          cols="4"
-          md="3"
-        >
-          <ProductItem />
-        </v-col>
-      </template>
+          type="card-avatar, article, actions"
+        />
+      </v-col>
+      <v-col
+        class="mb-6"
+        :boilerplate="true"
+        :elevation="2"
+        cols="12"
+        md="3"
+      >
+        <v-skeleton-loader
+
+          type="card-avatar, article, actions"
+        />
+      </v-col>
     </v-row>
+
+    <v-row
+      v-else
+    >
+      <CategoriesList />
+
+      <v-col
+        v-for="item in $store.getters['products/getList']"
+        :key="item.link"
+        cols="3"
+        md="3"
+      >
+        <ProductItem :item="item" />
+      </v-col>
+    </v-row>
+
     <Pagination />
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -34,7 +74,18 @@ import CategoriesList from "../CategoriesList";
 
 export default {
   name: "Products",
-  components: {CategoriesList, Pagination, ProductItem}
+  components: {CategoriesList, Pagination, ProductItem},
+  props: {
+    link: {
+      required: false,
+      default: () => '',
+      type: String
+    }
+  },
+  mounted() {
+    this.$store.dispatch('products/loadProducts', this.link);
+
+  }
 }
 </script>
 

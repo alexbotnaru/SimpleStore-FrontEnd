@@ -9,10 +9,10 @@
   >
     <v-img
       height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      :src="item.img[0]"
     />
 
-    <v-card-title>Cafe Badilico</v-card-title>
+    <v-card-title>{{ item.title }}</v-card-title>
 
     <v-card-text>
       <v-row
@@ -20,11 +20,20 @@
         class="mx-0"
       />
 
-      <div class="my-4 text-subtitle-1">
-        $ 500
+      <div
+        v-if="item.noPrice"
+        class="my-4 text-subtitle-1"
+      >
+        Договорная
+      </div>
+      <div
+        v-else
+        class="my-4 text-subtitle-1"
+      >
+        {{ item.currency }} {{ item.price }}
       </div>
 
-      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+      <div> {{ item.description.substring(0, 150) }}</div>
     </v-card-text>
 
     <v-divider class="mx-4" />
@@ -49,6 +58,12 @@
 <script>
 export default {
   name: "ProductItem",
+  props: {
+    item: {
+      required: true,
+      type:Object
+    }
+  },
   data: () => ({
     loading: false,
     selection: 1,

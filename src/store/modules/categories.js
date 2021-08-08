@@ -17,7 +17,7 @@ export default {
     actions: {
         async fetchCategories({commit}){
             commit('mutateLoading', true);
-            const categories =  await fetch('/api');
+            const categories =  await fetch('/api/categories');
             commit('mutateList', await categories.json());
             commit('mutateLoading', false);
         }

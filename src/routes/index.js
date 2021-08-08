@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', redirect: '/products' },
-    { path: '/products', component: Products },
+    { path: '/products', component: Products, props: (router) => ({link: router.query.link}) },
     { path: '/contacts', component: Contacts },
     { path: '/info', component: Info },
     { path: '/cart', component: Cart },
