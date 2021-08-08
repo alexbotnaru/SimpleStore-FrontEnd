@@ -11,7 +11,28 @@
           mdi-store-outline
         </v-icon>
       </v-toolbar-title>
+      <v-spacer />
+
+      <v-btn
+        class="mr-3"
+        icon
+      >
+        <v-icon>
+          mdi-cart-outline
+        </v-icon>
+      </v-btn>
+
+
+      <v-btn
+        class="mr-3"
+        icon
+      >
+        <v-icon>
+          mdi-logout
+        </v-icon>
+      </v-btn>
     </v-app-bar>
+
     <v-navigation-drawer
       v-model="drawer"
       fixed

@@ -1,8 +1,11 @@
 module.exports = {
   devServer: {
     proxy: {
-      '^/api/cars': {
-        target: 'http://localhost:1000/page',
+      '^/api': {
+        target: 'http://localhost:1000/categories',
+        pathRewrite: {
+          '^/api': ''
+        },
         ws: true,
         changeOrigin: true
       },
