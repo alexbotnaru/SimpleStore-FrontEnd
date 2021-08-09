@@ -13,6 +13,9 @@
       </v-toolbar-title>
       <v-spacer />
 
+      <Search
+      input-value="test"
+      @changeInput="changeSearchInput"/>
       <v-btn
         class="mr-3"
         icon
@@ -86,7 +89,7 @@
           <v-switch
             :value="$vuetify.theme.dark"
             :label="`Dark Mode : ${isDarkModeEnabled.toString()}`"
-            @change="$vuetify.theme.dark=!$vuetify.theme.dark"
+            @change="changeDarkMode()"
           />
         </v-col>
       </v-row>
@@ -96,8 +99,11 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import Search from "./Search";
 export default {
   name: "SideBar",
+  components: {Search},
   data() {
     return {
       drawer: false,
@@ -108,9 +114,27 @@ export default {
         {title: 'Contacts', route: '/contacts', icon: 'mdi-contacts'},
         {title: 'Log Out', route: '/', icon: 'mdi-logout'},
       ],
-      isDarkModeEnabled: true,
     }
   },
+  methods: {
+    changeDarkMode(){
+      this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
+    },
+    changeSearchInput(value){
+      console.log(value)
+    }
+  },
+  watch: {
+    isDarkModeEnabled: {
+      handler() {
+        this.$vuetify.theme.dark = this.isDarkModeEnabled
+      },
+      immediate: false
+    }
+  },
+  computed: mapGetters({
+    isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+  })
 }
 </script>
 

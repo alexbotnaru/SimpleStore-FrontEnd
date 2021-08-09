@@ -16,6 +16,7 @@ export default {
     },
     actions: {
         async loadProducts(store, payload){
+            //check if search has smth
             store.commit('mutateIsLoading', true);
             const products = await fetch(`/api/products?link=${payload}`);
             store.commit('mutateList', await products.json());
