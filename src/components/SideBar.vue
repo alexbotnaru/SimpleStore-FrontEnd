@@ -14,8 +14,9 @@
       <v-spacer />
 
       <Search
-      input-value="test"
-      @changeInput="changeSearchInput"/>
+        input-value=""
+        @changeInput="changeSearchInput"
+      />
       <v-btn
         class="mr-3"
         icon
@@ -116,14 +117,9 @@ export default {
       ],
     }
   },
-  methods: {
-    changeDarkMode(){
-      this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
-    },
-    changeSearchInput(value){
-      console.log(value)
-    }
-  },
+  computed: mapGetters({
+    isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+  }),
   watch: {
     isDarkModeEnabled: {
       handler() {
@@ -132,9 +128,14 @@ export default {
       immediate: false
     }
   },
-  computed: mapGetters({
-    isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
-  })
+  methods: {
+    changeDarkMode(){
+      this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
+    },
+    changeSearchInput(value){
+      this.$store.dispatch('products/searchProducts', value);
+    }
+  }
 }
 </script>
 
@@ -142,5 +143,8 @@ export default {
  .display-bottom{
    position: absolute;
    bottom: 0;
+ }
+ .v-toolbar__content input{
+   color: #707070
  }
 </style>

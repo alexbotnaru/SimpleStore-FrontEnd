@@ -4,6 +4,7 @@
     :loading="loading"
     class="mx-auto my-5"
     max-width="374"
+    height="600"
     link
     :to="link.route"
   >
