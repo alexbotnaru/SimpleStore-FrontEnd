@@ -1,37 +1,42 @@
 <template>
   <div>
-    <input
-      class="search"
-      placeholder="ex.Dacia"
-      type="text"
-      :value="inputValue"
-      @keypress="$emit('changeInput', $event.target.value)"
+    <form
+      @submit="onSubmit"
     >
-    <v-btn
-      class="mr-3"
-      icon
-    >
-      <v-icon>
-        mdi-magnify
-      </v-icon>
-    </v-btn>
+      <input
+        v-model="value"
+        class="search"
+        placeholder="ex.Dacia"
+        type="text"
+      >
+      <v-btn
+        class="mr-3"
+        icon
+      >
+        <v-icon>
+          mdi-magnify
+        </v-icon>
+      </v-btn>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
   name: "Search",
-  model: {
-    prop: 'inputValue',
-    event: 'changeInput'
-  },
-  props: {
-    inputValue: {
-      type: String,
-      required: false,
-      default: ''
+  data: function (){
+
+    return {
+      value: ''
+    }
+},
+  methods: {
+    onSubmit: function (e){
+      e.preventDefault();
+      this.$emit('onEnterPress', this.value)
     }
   }
+
 }
 </script>
 

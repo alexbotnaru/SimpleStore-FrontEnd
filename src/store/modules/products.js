@@ -16,9 +16,12 @@ export default {
     },
     actions: {
         async loadProducts(store, {link, page}){
+            let questionMark = '?';
+
+            if (link.includes('?')) questionMark = '&' ;
 
             store.commit('mutateIsLoading', true);
-            const products = await fetch(`/api/products?link=${link}?page=${page}`);
+            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}`);
             if (page > 1){
                 store.commit('mutateNewList', await products.json());
             } else {
@@ -26,12 +29,6 @@ export default {
             }
             store.commit('mutateIsLoading', false);
         },
-        async searchProducts(store, payload){
-            store.commit('mutateIsLoading', true);
-            const searchResult = await fetch(`/api/products?link=/ru/search?query=${payload}`);
-            store.commit('mutateList', await searchResult.json());
-            store.commit('mutateIsLoading', false);
-        }
     },
     mutations: {
         mutateList(state,payload){

@@ -4,7 +4,7 @@
     :loading="loading"
     class="mx-auto my-5"
     max-width="374"
-    height="600"
+    height="550"
     link
     :to="link.route"
   >
@@ -41,7 +41,7 @@
 
     <v-card-actions>
       <v-btn
-
+        class="addToCart"
         color="deep-purple lighten-2"
         text
       >
@@ -79,5 +79,8 @@ export default {
 </script>
 
 <style scoped>
-
+.addToCart{
+  position: absolute;
+  bottom: 10px;
+}
 </style>

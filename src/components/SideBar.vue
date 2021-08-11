@@ -4,18 +4,24 @@
       <v-app-bar-nav-icon @click="drawer = !drawer" />
 
       <v-toolbar-title>
-        Simple Store <v-icon
-          large
-          color="orange darken-2"
+        <v-btn
+          to="/"
+          text
+          class="text-h6"
+          link
         >
-          mdi-store-outline
-        </v-icon>
+          Simple Store <v-icon
+            large
+            color="orange darken-2"
+          >
+            mdi-store-outline
+          </v-icon>
+        </v-btn>
       </v-toolbar-title>
       <v-spacer />
 
       <Search
-        input-value=""
-        @changeInput="changeSearchInput"
+        @onEnterPress="onEnterPress"
       />
       <v-btn
         class="mr-3"
@@ -132,8 +138,14 @@ export default {
     changeDarkMode(){
       this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
     },
-    changeSearchInput(value){
-      this.$store.dispatch('products/searchProducts', value);
+    onEnterPress(inputValue){
+      this.$router.push({
+        path: '/products',
+        query: {
+          link: `/ru/search?query=${inputValue}`
+        }
+      })
+
     }
   }
 }
@@ -144,7 +156,5 @@ export default {
    position: absolute;
    bottom: 0;
  }
- .v-toolbar__content input{
-   color: #707070
- }
+
 </style>

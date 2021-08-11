@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="3">
+  <div>
     <v-progress-linear
       v-if="$store.getters['categories/getIsLoading']"
       indeterminate
@@ -27,7 +27,7 @@
                 <v-list-item-content>
                   <v-list-item-title class="text-wrap">
                     <router-link
-                        class="text--primary"
+                      class="text--primary"
                       :to="{href:'/products', query: {link: linkChild.link}}"
                     >
                       {{ linkChild.name }}
@@ -40,7 +40,7 @@
         </div>
       </v-expansion-panel>
     </v-expansion-panels>
-  </v-col>
+  </div>
 </template>
 
 <script>
