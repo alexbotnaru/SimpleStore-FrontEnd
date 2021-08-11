@@ -94,6 +94,7 @@
       <v-row class="display-bottom">
         <v-col class="ma-5">
           <v-switch
+            v-model="isDarkModeEnabled"
             :value="$vuetify.theme.dark"
             :label="`Dark Mode : ${isDarkModeEnabled.toString()}`"
             @change="changeDarkMode()"
@@ -131,7 +132,7 @@ export default {
       handler() {
         this.$vuetify.theme.dark = this.isDarkModeEnabled
       },
-      immediate: false
+      immediate: true
     }
   },
   methods: {
