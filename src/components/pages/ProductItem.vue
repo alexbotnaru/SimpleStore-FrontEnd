@@ -10,7 +10,7 @@
   >
     <v-img
       height="250"
-      :src="item.img[0]"
+      :src="item.img[0].replace('https://i.simpalsmedia.com/999.md/BoardImages/900x900/noimage.gif', 'https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg')"
     />
 
     <v-card-title>{{ item.title }}</v-card-title>

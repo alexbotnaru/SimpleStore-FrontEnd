@@ -21,7 +21,9 @@
       <v-spacer />
 
       <Search
-        @onEnterPress="onEnterPress"
+        :search-value="inputData"
+        @submitInput="onEnterPress"
+        @changeInput="inputData = $event"
       />
       <v-btn
         class="mr-3"
@@ -122,28 +124,39 @@ export default {
         {title: 'Contacts', route: '/contacts', icon: 'mdi-contacts'},
         {title: 'Log Out', route: '/', icon: 'mdi-logout'},
       ],
+      inputData: ''
     }
   },
-  computed: mapGetters({
-    isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
-  }),
+  computed: {
+    ...mapGetters({
+      isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+    }),
+    fullPath: function (){
+      return this.$route.query.link;
+    }
+  },
   watch: {
     isDarkModeEnabled: {
       handler() {
         this.$vuetify.theme.dark = this.isDarkModeEnabled
       },
       immediate: true
+    },
+    fullPath: function (){
+      if (!this.fullPath?.includes('search')){
+        this.inputData = '';
+      }
     }
   },
   methods: {
     changeDarkMode(){
       this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
     },
-    onEnterPress(inputValue){
+    onEnterPress(){
       this.$router.push({
         path: '/products',
         query: {
-          link: `/ru/search?query=${inputValue}`
+          link: `/ru/search?query=${this.inputData}`
         }
       })
 

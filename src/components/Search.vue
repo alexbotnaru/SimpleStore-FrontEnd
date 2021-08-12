@@ -2,11 +2,12 @@
   <div>
     <form
       @submit="onSubmit"
+      @keyup="$emit('changeInput', $event.target.value)"
     >
       <input
-        v-model="value"
+        :value="searchValue"
         class="search"
-        placeholder="ex.Dacia"
+        placeholder="search products"
         type="text"
       >
       <v-btn
@@ -24,18 +25,30 @@
 <script>
 export default {
   name: "Search",
-  data: function (){
-
-    return {
-      value: ''
+  model: {
+    prop: 'searchValue',
+    event: 'submitInput'
+  },
+  props: {
+    searchValue: {
+      type: String,
+      required: false,
+      default: ''
     }
-},
+  },
+  // data: function (){
+  //
+  //   return {
+  //     value: ''
+  //   }
+  // },
   methods: {
     onSubmit: function (e){
       e.preventDefault();
-      this.$emit('onEnterPress', this.value)
+      this.$emit('submitInput', e.target.value)
     }
   }
+
 
 }
 </script>
