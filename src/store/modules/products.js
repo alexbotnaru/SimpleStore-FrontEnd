@@ -21,7 +21,7 @@ export default {
             if (link.includes('?')) questionMark = '&' ;
 
             store.commit('mutateIsLoading', true);
-            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}`);
+            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}&hide_duplicates=yes`);
             if (page > 1){
                 store.commit('mutateNewList', await products.json());
             } else {
