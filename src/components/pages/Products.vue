@@ -2,7 +2,7 @@
   <div
     v-infinite-scroll="loadMore"
     class="pt-10"
-    :infinite-scroll-disabled="$store.getters['products/getIsLoading']"
+    :infinite-scroll-disabled="getIsLoading"
     infinite-scroll-distance="10"
   >
     <h1 style="text-align: center">
@@ -16,7 +16,7 @@
       <v-col cols="9">
         <v-row>
           <v-col
-            v-for="item in $store.getters['products/getList']"
+            v-for="item in getList"
             :key="item.link"
             cols="4"
             md="4"
@@ -26,7 +26,7 @@
         </v-row>
 
         <v-row
-          v-if="$store.getters['products/getIsLoading']"
+          v-if="getIsLoading"
         >
           <v-col
             class="mb-6"
@@ -74,6 +74,7 @@
 
 import ProductItem from "./ProductItem";
 import CategoriesList from "../CategoriesList";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Products",
@@ -88,11 +89,17 @@ export default {
   data: () => ({
     page: 1
   }),
+  computed: {
+    ...mapGetters({
+        getList: 'products/getList',
+        getIsLoading: 'products/getIsLoading'
+    })
+  },
   watch:{
     link: {
       handler(){
           this.page = 1;
-          this.$store.dispatch('products/loadProducts', {
+          this.loadProducts( {
             link: this.link,
             page: this.page
           });
@@ -101,9 +108,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      loadProducts: 'products/loadProducts'
+    }),
     loadMore: function (){
-      if(this.$store.getters['products/getList'].length !== 0) {
-        this.$store.dispatch('products/loadProducts', {
+      if(this.getList.length !== 0) {
+        this.loadProducts({
           link: this.link,
           page: ++this.page
         });

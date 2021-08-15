@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 import Search from "./Search";
 export default {
   name: "SideBar",
@@ -149,8 +149,11 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setDarkMode: 'settings/setDarkModeEnabled'
+    }),
     changeDarkMode(){
-      this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled);
+      this.setDarkMode(!this.isDarkModeEnabled);
     },
     onEnterPress(){
       this.$router.push({
