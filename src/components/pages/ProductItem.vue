@@ -5,13 +5,20 @@
     class="mx-auto my-5"
     max-width="374"
     height="550"
-    link
-    :to="link.route"
   >
-    <v-img
-      height="250"
-      :src="item.img[0].replace('https://i.simpalsmedia.com/999.md/BoardImages/900x900/noimage.gif', 'https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg')"
-    />
+    <router-link
+      :to="{
+        name: 'item',
+        params: {
+          id: itemId
+        }
+      }"
+    >
+      <v-img
+        height="250"
+        :src="item.img[0].replace('https://i.simpalsmedia.com/999.md/BoardImages/900x900/noimage.gif', 'https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg')"
+      />
+    </router-link>
 
     <v-card-title>{{ item.title }}</v-card-title>
 
@@ -73,6 +80,12 @@ export default {
     }
 
   }),
+  computed: {
+    itemId: function (){
+      return this.item.link.substring(4);
+    }
+
+  },
 
   methods: {},
 }

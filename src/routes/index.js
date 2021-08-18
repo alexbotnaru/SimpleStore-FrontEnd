@@ -5,18 +5,18 @@ import Cart from "../components/pages/Cart";
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import MyAccount from "../components/pages/MyAccount";
-import ProductDetails from "../components/pages/ProductDetails";
+import Item from "../components/pages/Item";
 
 Vue.use(VueRouter);
 
 const routes = [
     { path: '/', redirect: '/products' },
-    { path: '/products', component: Products, props: (router) => ({link: router.query.link}) },
-    { path: '/contacts', component: Contacts },
-    { path: '/info', component: Info },
-    { path: '/cart', component: Cart },
-    { path: '/account', component: MyAccount },
-    { path: '/details', component: ProductDetails }
+    { name: 'products', path: '/products', component: Products, props: (router) => ({link: router.query.link}) },
+    { name: 'contacts', path: '/contacts', component: Contacts },
+    { name: 'info', path: '/info', component: Info },
+    { name: 'cart', path: '/cart', component: Cart },
+    { name: 'account', path: '/account', component: MyAccount },
+    { name: 'item', path: '/item/:id', component: Item, props: true }
 
 ]
 

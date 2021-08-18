@@ -2,8 +2,9 @@ export default {
     namespaced: true,
     state:{
         list: [],
-        isLoading: false
-
+        isLoading: false,
+        searchList: {},
+        isSearchLoading: false
     },
     getters: {
         getIsLoading(state) {
@@ -11,17 +12,24 @@ export default {
         },
         getList(state) {
             return state.list;
+        },
+        getSearchSuggestionsList(state) {
+            return state.searchList?.suggestions ?? [];
+        },
+        getIsSearchLoading(state) {
+            return state.isSearchLoading;
         }
 
     },
     actions: {
-        async loadProducts(store, {link, page}){
+        async loadProducts(store, {link, page = 1}){
+            store.commit('mutateIsLoading', true);
             let questionMark = '?';
-
             if (link.includes('?')) questionMark = '&' ;
 
-            store.commit('mutateIsLoading', true);
-            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}&hide_duplicates=yes`);
+            // let linkParam = btoa(`${link}${questionMark}page=${page}`);
+            //@fixme doesnt work (Internal Server Error)
+            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}`);
             if (page > 1){
                 store.commit('mutateNewList', await products.json());
             } else {
@@ -29,6 +37,13 @@ export default {
             }
             store.commit('mutateIsLoading', false);
         },
+        async searchSuggestions(store, payload){
+            store.commit('mutateIsSearchLoading', true);
+            const suggestions = await fetch(`/api/suggestions?query=${payload}`);
+            store.commit('mutateSearch',await suggestions.json());
+            store.commit('mutateIsSearchLoading', false);
+
+        }
     },
     mutations: {
         mutateList(state,payload){
@@ -39,6 +54,12 @@ export default {
         },
         mutateNewList(state, payload){
             state.list = state.list.concat(payload);
+        },
+        mutateIsSearchLoading(state, payload){
+            state.isSearchLoading = payload;
+        },
+        mutateSearch(state, payload){
+            state.searchList = payload;
         }
     }
 }

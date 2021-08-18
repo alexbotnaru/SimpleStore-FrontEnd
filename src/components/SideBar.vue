@@ -21,10 +21,20 @@
       <v-spacer />
 
       <Search
-        :search-value="inputData"
+        v-model="search"
+        :items="searchSuggestions"
+        :loading="isSearchLoading"
         @submitInput="onEnterPress"
-        @changeInput="inputData = $event"
       />
+      <v-btn
+        class="mr-3"
+        icon
+      >
+        <v-icon>
+          mdi-magnify
+        </v-icon>
+      </v-btn>
+
       <v-btn
         class="mr-3"
         icon
@@ -124,12 +134,15 @@ export default {
         {title: 'Contacts', route: '/contacts', icon: 'mdi-contacts'},
         {title: 'Log Out', route: '/', icon: 'mdi-logout'},
       ],
-      inputData: ''
+      inputData: '',
+      search: ''
     }
   },
   computed: {
     ...mapGetters({
-      isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+      isDarkModeEnabled: 'settings/getIsDarkModeEnabled',
+      searchSuggestions: 'products/getSearchSuggestionsList',
+      isSearchLoading: 'products/getIsSearchLoading'
     }),
     fullPath: function (){
       return this.$route.query.link;
@@ -146,6 +159,10 @@ export default {
       if (!this.fullPath?.includes('search')){
         this.inputData = '';
       }
+    },
+    search(){
+      this.$store.dispatch('products/searchSuggestions', this.search);
+
     }
   },
   methods: {
@@ -155,11 +172,12 @@ export default {
     changeDarkMode(){
       this.setDarkMode(!this.isDarkModeEnabled);
     },
-    onEnterPress(){
+    onEnterPress(value){
+
       this.$router.push({
-        path: '/products',
+        name: 'products',
         query: {
-          link: `/ru/search?query=${this.inputData}`
+          link: `/ru/search?query=${value}`
         }
       })
 
