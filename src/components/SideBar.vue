@@ -99,14 +99,24 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-group
+          class="hidden-sm-and-up"
+          :value="false"
+          prepend-icon="mdi-view-list"
+        >
+          <template v-slot:activator>
+            <v-list-item-title>Categories</v-list-item-title>
+          </template>
+          <CategoriesList />
+        </v-list-group>
       </v-list>
       <v-spacer />
-      <v-row class="display-bottom">
-        <v-col class="ma-5">
+      <v-row>
+        <v-col>
           <v-switch
             v-model="isDarkModeEnabled"
             :value="$vuetify.theme.dark"
-            :label="`Dark Mode : ${isDarkModeEnabled.toString()}`"
+            :label="`Dark Mode `"
             @change="changeDarkMode()"
           />
         </v-col>
@@ -119,9 +129,10 @@
 <script>
 import {mapGetters, mapMutations} from 'vuex'
 import Search from "./Search";
+import CategoriesList from "./CategoriesList";
 export default {
   name: "SideBar",
-  components: {Search},
+  components: {CategoriesList, Search},
   data() {
     return {
       drawer: false,

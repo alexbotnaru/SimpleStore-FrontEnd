@@ -5,7 +5,7 @@
       :loading="loading"
       class="mx-auto my-5"
       max-width="374"
-      height="550"
+      height="600"
     >
       <router-link
         :to="{

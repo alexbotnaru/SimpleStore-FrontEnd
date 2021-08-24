@@ -18,12 +18,12 @@
       >
         <CategoriesList />
       </v-col>
-      <v-col
-        cols="12"
-        class="hidden-sm-and-up"
-      >
-        <CategoriesList />
-      </v-col>
+      <!--      <v-col-->
+      <!--        cols="12"-->
+      <!--        class="hidden-sm-and-up"-->
+      <!--      >-->
+      <!--        <CategoriesList />-->
+      <!--      </v-col>-->
       <v-col
         class="hidden-xs-only"
         cols="8"
@@ -50,12 +50,11 @@
             class="mb-6"
             :boilerplate="true"
             :elevation="2"
-            cols="12"
             xl="3"
             lg="4"
             md="4"
             sm="6"
-            xs="9"
+            xs="12"
           >
             <v-skeleton-loader
 
@@ -66,8 +65,11 @@
             class="mb-6"
             :boilerplate="true"
             :elevation="2"
-            cols="12"
+            xl="3"
+            lg="4"
             md="4"
+            sm="6"
+            xs="12"
           >
             <v-skeleton-loader
 
@@ -78,8 +80,56 @@
             class="mb-6"
             :boilerplate="true"
             :elevation="2"
-            cols="12"
+            xl="3"
+            lg="4"
             md="4"
+            sm="6"
+            xs="12"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            xl="3"
+            lg="4"
+            md="4"
+            sm="6"
+            xs="12"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            xl="3"
+            lg="4"
+            md="4"
+            sm="6"
+            xs="12"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            xl="3"
+            lg="4"
+            md="4"
+            sm="6"
+            xs="12"
           >
             <v-skeleton-loader
 
