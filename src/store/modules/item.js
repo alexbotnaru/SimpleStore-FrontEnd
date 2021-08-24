@@ -13,7 +13,6 @@ export default {
 
             const itemDetails = await fetch(`/api/item?link=/ru/${payload}`);
             const result = await itemDetails.json();
-            console.log(result)
             store.commit('mutateItem', result);
             store.commit('mutateIsLoading', false);
         }

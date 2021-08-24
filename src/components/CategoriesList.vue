@@ -11,13 +11,13 @@
       focusable
     >
       <v-expansion-panel
-        v-for="(link, i) in $store.getters['categories/getList']"
+        v-for="(link, i) in getList"
         :key="i"
       >
         <div v-if="!link.parentLink">
           <v-expansion-panel-header>{{ link.name }}</v-expansion-panel-header>
           <div
-            v-for="(linkChild, j) in $store.getters['categories/getList']"
+            v-for="(linkChild, j) in getList"
             :key="j"
           >
             <v-expansion-panel-content

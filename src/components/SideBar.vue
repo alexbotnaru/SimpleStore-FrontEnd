@@ -7,33 +7,31 @@
         <v-btn
           to="/"
           text
-          class="text-h6"
           link
+          class="text-h6 hidden-xs-only"
         >
-          Simple Store <v-icon
-            large
-            color="orange darken-2"
-          >
-            mdi-store-outline
-          </v-icon>
+          Simple Store
         </v-btn>
+        <v-icon
+          large
+          color="orange darken-2"
+        >
+          mdi-store-outline
+        </v-icon>
       </v-toolbar-title>
       <v-spacer />
+
 
       <Search
         v-model="search"
         :items="searchSuggestions"
         :loading="isSearchLoading"
-        @submitInput="onEnterPress"
+        @submitInput="onSubmit"
+        @onChange="onChange"
       />
-      <v-btn
-        class="mr-3"
-        icon
-      >
-        <v-icon>
-          mdi-magnify
-        </v-icon>
-      </v-btn>
+      <v-icon>
+        mdi-magnify
+      </v-icon>
 
       <v-btn
         class="mr-3"
@@ -46,7 +44,7 @@
 
 
       <v-btn
-        class="mr-3"
+        class="mr-3 hidden-sm-and-down"
         icon
       >
         <v-icon>
@@ -172,8 +170,7 @@ export default {
     changeDarkMode(){
       this.setDarkMode(!this.isDarkModeEnabled);
     },
-    onEnterPress(value){
-
+    onSubmit(value){
       this.$router.push({
         name: 'products',
         query: {
@@ -181,6 +178,16 @@ export default {
         }
       })
 
+    },
+    onChange(e) {
+      if (this.search) {
+        this.$router.push({
+          path: '/products',
+          query: {
+            link: e.url
+          }
+        })
+      }
     }
   }
 }

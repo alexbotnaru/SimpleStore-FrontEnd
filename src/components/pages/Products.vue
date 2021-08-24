@@ -10,16 +10,34 @@
     </h1>
 
     <v-row>
-      <v-col cols="3">
+      <v-col
+        cols="4"
+        md="3"
+        xs="4"
+        class="hidden-xs-only"
+      >
         <CategoriesList />
       </v-col>
-      <v-col cols="9">
+      <v-col
+        cols="12"
+        class="hidden-sm-and-up"
+      >
+        <CategoriesList />
+      </v-col>
+      <v-col
+        class="hidden-xs-only"
+        cols="8"
+        xs="8"
+      >
         <v-row>
           <v-col
             v-for="item in getList"
             :key="item.link"
-            cols="4"
+            xl="3"
+            lg="4"
             md="4"
+            sm="6"
+            xs="12"
           >
             <ProductItem :item="item" />
           </v-col>
@@ -33,7 +51,75 @@
             :boilerplate="true"
             :elevation="2"
             cols="12"
+            xl="3"
+            lg="4"
             md="4"
+            sm="6"
+            xs="9"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            cols="12"
+            md="4"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            cols="12"
+            md="4"
+          >
+            <v-skeleton-loader
+
+              type="card, article, actions"
+            />
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col
+        class="hidden-sm-and-up"
+        cols="12"
+        xs="12"
+      >
+        <v-row>
+          <v-col
+            v-for="item in getList"
+            :key="item.link"
+            xl="3"
+            lg="4"
+            md="4"
+            sm="6"
+            xs="12"
+          >
+            <ProductItem :item="item" />
+          </v-col>
+        </v-row>
+
+        <v-row
+          v-if="getIsLoading"
+        >
+          <v-col
+            class="mb-6"
+            :boilerplate="true"
+            :elevation="2"
+            cols="12"
+            xl="3"
+            lg="4"
+            md="4"
+            sm="6"
+            xs="12"
           >
             <v-skeleton-loader
 

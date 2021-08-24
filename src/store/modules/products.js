@@ -30,17 +30,19 @@ export default {
             // let linkParam = btoa(`${link}${questionMark}page=${page}`);
             //@fixme doesnt work (Internal Server Error)
             const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}`);
+            const result = await products.json();
+            store.commit('productHistory/mutateItem', result, {root: true});
             if (page > 1){
-                store.commit('mutateNewList', await products.json());
+                store.commit('mutateNewList', result);
             } else {
-                store.commit('mutateList', await products.json());
+                store.commit('mutateList', result);
             }
             store.commit('mutateIsLoading', false);
         },
         async searchSuggestions(store, payload){
             store.commit('mutateIsSearchLoading', true);
             const suggestions = await fetch(`/api/suggestions?query=${payload}`);
-            store.commit('mutateSearch',await suggestions.json());
+            store.commit('mutateSearch', await suggestions.json());
             store.commit('mutateIsSearchLoading', false);
 
         }

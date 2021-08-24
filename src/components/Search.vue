@@ -1,30 +1,27 @@
 <template>
-  <v-autocomplete
-    value="searchValue"
-    label="Search for products"
-    dense
-    flat
-    hide-details
-    hide-no-data
-    item-text="title"
-    item-value="url"
-    :items="items"
-    :loading="loading"
-    :search-input.sync="search"
-    @keydown.enter="$emit('submitInput', search)"
-  >
-    <!--    @keydown.enter="changeSearch"-->
-    <!--  >-->
-    <!--      @submit="onSubmit"-->
-    <!--      @keyup="$emit('changeInput', $event.target.value)"-->
+  <div>
+    <v-container
 
-    <!--      <input-->
-    <!--        :value="searchValue"-->
-    <!--        class="search"-->
-    <!--        placeholder="search products"-->
-    <!--        type="text"-->
-    <!--      >-->
-  </v-autocomplete>
+      class="search-bar"
+    >
+      <v-autocomplete
+        value="searchValue"
+        label="Search for products"
+        dense
+        flat
+        hide-details
+        hide-no-data
+        return-object
+        item-text="title"
+        item-value="url"
+        :items="items"
+        :loading="loading"
+        :search-input.sync="search"
+        @change="$emit('onChange', $event)"
+        @keydown.enter="$emit('submitInput', search)"
+      />
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -71,5 +68,13 @@ export default {
 </script>
 
 <style scoped>
+.search-bar{
+  max-width: 300px
+}
+@media only screen and (max-width: 700px) {
+  .search-bar{
+    max-width: 150px;
+  }
 
+}
 </style>

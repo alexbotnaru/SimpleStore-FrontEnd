@@ -25,6 +25,15 @@ module.exports = {
                 ws: true,
                 changeOrigin: true,
             },
+            '^/api/m/suggestions': {
+                target: 'https://m.999.md/suggestions',
+                pathRewrite: {
+                    '^/api/m/suggestions': ''
+                },
+                ws: true,
+                changeOrigin: true,
+            },
+            //'https://m.999.md/suggestions'
             '^/api/item': {
                 target: 'http://localhost:1000/item',
                 pathRewrite: {
