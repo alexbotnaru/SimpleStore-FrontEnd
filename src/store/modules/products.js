@@ -1,9 +1,13 @@
+import {encode} from "js-base64";
+import {fetchSuggestions} from '@/api/999'
+import {fetchProducts} from "@/api/999";
+
 export default {
     namespaced: true,
     state:{
         list: [],
         isLoading: false,
-        searchList: {},
+        searchList: [],
         isSearchLoading: false
     },
     getters: {
@@ -14,7 +18,7 @@ export default {
             return state.list;
         },
         getSearchSuggestionsList(state) {
-            return state.searchList?.suggestions ?? [];
+            return state.searchList ?? [];
         },
         getIsSearchLoading(state) {
             return state.isSearchLoading;
@@ -24,25 +28,25 @@ export default {
     actions: {
         async loadProducts(store, {link, page = 1}){
             store.commit('mutateIsLoading', true);
-            let questionMark = '?';
-            if (link.includes('?')) questionMark = '&' ;
+            let appender = link.includes('?') ? '&' : '?';
+            let params = encode(`${link}${appender}page=${page}&hide_duplicates=yes`);
 
-            // let linkParam = btoa(`${link}${questionMark}page=${page}`);
-            //@fixme doesnt work (Internal Server Error)
-            const products = await fetch(`/api/products?link=${link}${questionMark}page=${page}`);
-            const result = await products.json();
-            store.commit('productHistory/mutateItem', result, {root: true});
+            let products = await fetchProducts(params);
+            products = await products.data
+
+            store.commit('productHistory/mutateItem', products, {root: true});
             if (page > 1){
-                store.commit('mutateNewList', result);
+                store.commit('mutateNewList', products);
             } else {
-                store.commit('mutateList', result);
+                store.commit('mutateList', products);
             }
             store.commit('mutateIsLoading', false);
         },
         async searchSuggestions(store, payload){
             store.commit('mutateIsSearchLoading', true);
-            const suggestions = await fetch(`/api/suggestions?query=${payload}`);
-            store.commit('mutateSearch', await suggestions.json());
+            const suggestions = await fetchSuggestions(payload);
+
+            store.commit('mutateSearch', suggestions.data?.suggestions);
             store.commit('mutateIsSearchLoading', false);
 
         }

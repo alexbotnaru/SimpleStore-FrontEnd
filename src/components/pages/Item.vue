@@ -84,11 +84,14 @@
               lg="6"
               md="6"
               sm="12"
+              xs="12"
             >
-              <div class="feature">
-                <div>{{ item.name }}</div>
-                <div class="dotted" />
-                <div>{{ item.value }}</div>
+              <div v-if="item.value">
+                <div class="feature">
+                  <div>{{ item.name }}</div>
+                  <div class="dotted" />
+                  <div>{{ item.value }}</div>
+                </div>
               </div>
             </v-col>
             <v-col
@@ -98,11 +101,14 @@
               lg="6"
               md="6"
               sm="12"
+              xs="12"
             >
-              <div class="feature">
-                <div>{{ item.name }}</div>
-                <div class="dotted" />
-                <div>{{ item.value }}</div>
+              <div v-if="item.value">
+                <div class="feature">
+                  <div>{{ item.name }}</div>
+                  <div class="dotted" />
+                  <div>{{ item.value }}</div>
+                </div>
               </div>
             </v-col>
           </v-row>

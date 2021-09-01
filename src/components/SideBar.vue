@@ -114,8 +114,7 @@
       <v-row>
         <v-col>
           <v-switch
-            v-model="isDarkModeEnabled"
-            :value="$vuetify.theme.dark"
+            :value="isDarkModeEnabled"
             :label="`Dark Mode `"
             @change="changeDarkMode()"
           />

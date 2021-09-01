@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-container
-
       class="search-bar"
     >
       <v-autocomplete

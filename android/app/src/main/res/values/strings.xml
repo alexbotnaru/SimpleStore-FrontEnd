@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SimpleStoreApp</string>
+    <string name="title_activity_main">SimpleStoreApp</string>
+    <string name="package_name">simple.store.android</string>
+    <string name="custom_url_scheme">simple.store.android</string>
+</resources>
